@@ -1,9 +1,13 @@
+import { DBFieldKeys } from '../utilities/DBReferences'
+const { postCategoriesKey } = DBFieldKeys;
+
 export default CategoryList = {
     'MainCategory': [
         {
             id: 0,
             title: 'Mobiles',
             searchKey: 'mobiles',
+            dbKey: postCategoriesKey.Mobiles,
             iconName: 'ios-phone-portrait-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -14,6 +18,7 @@ export default CategoryList = {
             id: 1,
             title: 'Electronics & Appliances',
             searchKey: 'electronics',
+            dbKey: postCategoriesKey.Electronics,
             iconName: 'ios-camera-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -24,6 +29,7 @@ export default CategoryList = {
             id: 2,
             title: 'Properties',
             searchKey: 'properties',
+            dbKey: postCategoriesKey.Properties,
             iconName: 'ios-home-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -34,6 +40,7 @@ export default CategoryList = {
             id: 3,
             title: 'Vehicles',
             searchKey: 'vehicles',
+            dbKey: postCategoriesKey.Vehicles,
             iconName: 'ios-car-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -44,6 +51,7 @@ export default CategoryList = {
             id: 4,
             title: 'Adventure & Holiday Packages',
             searchKey: 'holiday',
+            dbKey: postCategoriesKey.Adventure,
             iconName: 'ios-image-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -54,6 +62,7 @@ export default CategoryList = {
             id: 5,
             title: 'Hotels',
             searchKey: 'hotels',
+            dbKey: postCategoriesKey.Hotels,
             iconName: 'ios-restaurant-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -64,6 +73,7 @@ export default CategoryList = {
             id: 6,
             title: 'Furniture',
             searchKey: 'furniture',
+            dbKey: postCategoriesKey.Furniture,
             iconName: 'weekend',
             iconType: 'materialicon',
             parent: undefined,
@@ -74,6 +84,7 @@ export default CategoryList = {
             id: 7,
             title: 'Jobs',
             searchKey: 'jobs',
+            dbKey: postCategoriesKey.Jobs,
             iconName: 'ios-school-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -84,6 +95,7 @@ export default CategoryList = {
             id: 8,
             title: 'Services',
             searchKey: 'services',
+            dbKey: postCategoriesKey.Services,
             iconName: 'ios-rose-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -94,6 +106,7 @@ export default CategoryList = {
             id: 9,
             title: 'Pets',
             searchKey: 'pets',
+            dbKey: postCategoriesKey.Pets,
             iconName: 'ios-paw-outline',
             iconType: 'ionicon',
             parent: undefined,
@@ -104,6 +117,7 @@ export default CategoryList = {
             id: 10,
             title: 'Books, Sports & Hobbies',
             searchKey: 'books',
+            dbKey: postCategoriesKey.BooksSportsHobbies,
             iconName: 'ios-basketball-outline',
             iconType: 'ionicon',
             thumbnail: 'https://firebasestorage.googleapis.com/v0/b/innernepal-dca5b.appspot.com/o/categoryThumbnails%2Fcategory_sports.jpg?alt=media&token=95e84743-5b63-490c-9154-7df92ca73ac7'
@@ -112,6 +126,7 @@ export default CategoryList = {
             id: 11,
             title: 'Fashion',
             searchKey: 'fashion',
+            dbKey: postCategoriesKey.Fashion,
             iconName: 'ios-shirt-outline',
             iconType: 'ionicon',
             thumbnail: 'https://firebasestorage.googleapis.com/v0/b/innernepal-dca5b.appspot.com/o/categoryThumbnails%2Fcategory_fashion.jpg?alt=media&token=21fd59e7-85bc-4cc1-8ea7-88f5ca87c1e6'
@@ -120,6 +135,7 @@ export default CategoryList = {
             id: 12,
             title: 'Flight & Bus Tickets',
             searchKey: 'flight',
+            dbKey: postCategoriesKey.FlightBusTickets,
             iconName: 'ios-plane-outline',
             iconType: 'ionicon',
             thumbnail: 'https://firebasestorage.googleapis.com/v0/b/innernepal-dca5b.appspot.com/o/categoryThumbnails%2Fcategory_tickets.jpg?alt=media&token=a7385e1c-af4e-49ac-9bcf-5dc08e3ff123'
@@ -128,6 +144,7 @@ export default CategoryList = {
             id: 13,
             title: 'Events',
             searchKey: 'events',
+            dbKey: postCategoriesKey.Events,
             iconName: 'calendar',
             iconType: 'evilicon',
             thumbnail: 'https://firebasestorage.googleapis.com/v0/b/innernepal-dca5b.appspot.com/o/categoryThumbnails%2Fcategory_events.jpg?alt=media&token=b809f37c-37d1-494f-835a-67f7ef267dad'

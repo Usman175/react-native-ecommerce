@@ -10,6 +10,8 @@ import {
     postCollectionRef,
     getPostStorageLocation
 } from '../../utilities/DBReferences';
+import { getSelectedCategoryDBKeys } from '../../utilities/DBReferences'
+
 
 class CreateAdContainer extends Component {
     constructor(props) {
@@ -189,7 +191,7 @@ class CreateAdContainer extends Component {
         }
 
         let data = {
-            selectedCategory,
+            selectedCategory: getSelectedCategoryDBKeys(selectedCategory),
             selectedSubCategory,
             selectedLocation,
             selectedProductCondition,

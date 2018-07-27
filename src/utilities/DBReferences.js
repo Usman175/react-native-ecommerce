@@ -45,3 +45,85 @@ export const getPostThumbnailURLFromRef = (imageLocation) => {
         }
     });
 }
+
+export const DBFieldKeys = {
+    postCategoriesKey: {
+        Mobiles: 'mobiles',
+        Electronics: 'electronics',
+        Properties: 'properties',
+        Vehicles: 'vehicles',
+        Adventure: 'adventure',
+        Hotels: 'hotels',
+        Furniture: 'furniture',
+        Jobs: 'jobs',
+        Services: 'services',
+        Pets: 'pets',
+        BooksSportsHobbies: 'booksSportsHobbies',
+        Fashion: 'fashion',
+        FlightBusTickets: 'flightBusTickets',
+        Events: 'events'
+    },
+    postSubCategoriesKey: {
+        MobilePhones: 'mobilePhones',
+        Tablet: 'tablet',
+        Accessories: 'accessories',
+
+        ComputerAppliances: 'computerAppliances',
+        TVsVideoAudio: 'tVsVideoAudio',
+        HardDisksPrinterMonitors: 'hardDisksPrinterMonitors',
+        WashingMachines: 'washingMachines',
+        Fridges: 'fridges',
+        ComputerAccessories: 'computerAccessories',
+        CameraAndLenses: 'cameraAndLenses',
+        GamesEntertainment: 'gamesEntertainment',
+
+        Hostels: 'hotels',
+        RentalRooms: 'rentalRooms',
+        Apartments: 'apartments',
+        ShopsOffices: 'shopsOffices',
+        LandAndPlots: 'landAndPlots',
+        HouseAndVillas: 'houseAndVillas',
+
+        Bikes: 'bikes',
+        Cars: 'cars',
+        CommercialVehicles: 'commercialVehicles',
+        OtherVehicles: 'otherVehicles',
+        SpareParts: 'spareParts'
+
+    }
+}
+
+export const getSelectedCategoryDBKeys = (title) => {
+    const { postCategoriesKey } = DBFieldKeys;
+
+    switch (title) {
+        case 'Mobiles':
+            return postCategoriesKey.Mobiles;
+        case 'Electronics & Appliances':
+            return postCategoriesKey.Electronics;
+        case 'Properties':
+            return postCategoriesKey.Properties;
+        case 'Vehicles':
+            return postCategoriesKey.Vehicles;
+        case 'Adventure & Holiday Packages':
+            return postCategoriesKey.Adventure;
+        case 'Hotels':
+            return postCategoriesKey.Hotels;
+        case 'Furniture':
+            return postCategoriesKey.Furniture;
+        case 'Jobs':
+            return postCategoriesKey.Jobs;
+        case 'Services':
+            return postCategoriesKey.Services;
+        case 'Pets':
+            return postCategoriesKey.Pets;
+        case 'Books, Sports & Hobbies':
+            return postCategoriesKey.BooksSportsHobbies;
+        case 'Fashion':
+            return postCategoriesKey.Fashion;
+        case 'Flight & Bus Tickets':
+            return postCategoriesKey.FlightBusTickets;
+        case 'Events':
+            return postCategoriesKey.Events;
+    }
+}
