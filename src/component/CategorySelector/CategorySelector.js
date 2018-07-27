@@ -21,6 +21,9 @@ const {
     level2TitleHeaderContainerStyle,
     level2FlatListContainerStyle,
     dividerStyle,
+    parentTitleTextStyle,
+    rowStyle,
+    rowTextStyle,
     cancelTextStyle,
     selectedCategoryTextStyle
 } = styles;
@@ -35,7 +38,10 @@ export class CategorySelector extends Component {
             parentDataSourceTitle: 'Main Category',
             currentDataSource: MainCategory,
             drillIndex: 0,
-            selectedParentCaterory: undefined
+            selectedParentCaterory: undefined,
+
+            selectedCategory: undefined,
+            selectedSubCategory: undefined
         };
     }
 
@@ -82,35 +88,38 @@ export class CategorySelector extends Component {
                 justifyContent: 'center',
                 alignItems: 'stretch',
                 height: StyleSheet.hairlineWidth,
-                backgroundColor: Color.placeholderWhite,
-                marginVertical: 5
+                backgroundColor: Color.placeholderWhite
             }}
             />
         );
     }
 
     renderMainCategoryRow = ({ item }) => {
+        const { selectedCategory, selectedSubCategory } = this.props;
+        let isSelected = ((selectedCategory && (item.title === selectedCategory)) || (selectedSubCategory && (item.title === selectedSubCategory))) ? true : false;
+
         return (
             <TouchableOpacity
-                style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 20 }}
+                style={isSelected ? [rowStyle, { backgroundColor: Color.placeholderWhite }] : rowStyle}
                 onPress={() => this.drillDown(item)}
             >
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
                     <Icon
-                        name={item.icon}
-                        // type="ionicon"
+                        name={item.iconName}
+                        type={item.iconType}
                         underlayColor="transparent"
                         color={Color.lightDark}
                         size={30}
                     />
 
-                    <Text style={{ paddingLeft: 10, fontSize: 16, color: Color.dark }}>{item.title}</Text>
+                    <Text style={rowTextStyle}>{item.title}</Text>
                 </View>
                 {
                     item.children ?
                         <Icon
-                            name="ios-arrow-forward-outline"
-                            type="ionicon"
+                            name="chevron-right"
+                            type="evilicon"
+                            size={30}
                             underlayColor="transparent"
                             color={Color.lightDark}
                         /> : <View />
@@ -123,10 +132,16 @@ export class CategorySelector extends Component {
         const { parentDataSourceTitle, drillIndex } = this.state;
         const { selectedCategory, selectedSubCategory, createAdStatusDone } = this.props;
 
+        /**
+         * Without setting this prop, FlatList would not know it needs to re-render any items because it is also a PureComponent 
+         * and the prop comparison will not show any changes.
+         */
+        const doUpdateFlatList = { selectedCategory, selectedSubCategory }
+
         return (
             <View>
                 <View style={level2TitleHeaderContainerStyle}>
-                    <Text style={{ color: Color.dark, fontSize: 18 }}>{parentDataSourceTitle}</Text>
+                    <Text style={parentTitleTextStyle}>{parentDataSourceTitle}</Text>
                     {drillIndex === 0 ? <View /> : <Icon
                         name="arrow-up"
                         type="feather"
@@ -140,13 +155,14 @@ export class CategorySelector extends Component {
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={dataSource}
+                        extraData={doUpdateFlatList}
                         renderItem={this.renderMainCategoryRow}
                         removeClippedSubviews={false}
                         keyExtractor={this.keyExtractor}
                         ItemSeparatorComponent={this.renderSeparator}
                     />
                 </View>
-                <View style={level2TitleHeaderContainerStyle}>
+                <View style={[level2TitleHeaderContainerStyle, { backgroundColor: Color.dark, borderTopWidth: 1, borderTopColor: Color.golden }]}>
                     <Text style={selectedCategoryTextStyle}>{selectedCategory ? (selectedCategory + '/' + '\n' + selectedSubCategory) : ''}</Text>
                     <TouchableOpacity onPress={selectedCategory ? createAdStatusDone : null}>
                         <Text style={cancelTextStyle}>Done</Text>
