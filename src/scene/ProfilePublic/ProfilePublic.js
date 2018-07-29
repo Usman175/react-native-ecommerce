@@ -51,7 +51,8 @@ class ProfilePublic extends Component {
         return (
             <FlatList
                 showsVerticalScrollIndicator={false}
-                style={{ alignSelf: 'flex-start', marginTop: 10, backgroundColor: colors.lightBlueWhite }}
+                contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', }}
+                style={{ marginTop: 10, backgroundColor: colors.lightBlueWhite }}
                 data={sellerAdsList}
                 renderItem={this.renderItemCard}
                 // removeClippedSubviews={false}
