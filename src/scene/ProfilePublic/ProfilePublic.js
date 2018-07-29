@@ -51,7 +51,8 @@ class ProfilePublic extends Component {
         return (
             <FlatList
                 showsVerticalScrollIndicator={false}
-                style={{ alignSelf: 'flex-start', marginTop: 10, backgroundColor: colors.lightBlueWhite }}
+                contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', }}
+                style={{ marginTop: 10, backgroundColor: colors.lightBlueWhite }}
                 data={sellerAdsList}
                 renderItem={this.renderItemCard}
                 // removeClippedSubviews={false}
@@ -90,8 +91,14 @@ class ProfilePublic extends Component {
         const sellerphoneNumber = phoneNumber ? phoneNumber : '';
 
         return (
-            <View style={{ flexDirection: 'column', backgroundColor: colors.lightBlueWhite }}>
-                <Text style={nameTextStyle}>{sellerFirstName + ' ' + sellerLastName}</Text>
+            <View style={{ flexDirection: 'column', backgroundColor: colors.dark }}>
+                <Text
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                    style={nameTextStyle}
+                >
+                    {sellerFirstName + ' ' + sellerLastName}
+                </Text>
                 <View style={{ flexDirection: 'row', alignSelf: 'flex-start', marginTop: 10 }}>
                     <Icon
                         name="ios-pin-outline"
@@ -101,37 +108,15 @@ class ProfilePublic extends Component {
                     />
                     <Text style={addressTextStyle}>{address}</Text>
                 </View>
-                <Text style={addressTextStyle}>{sellerphoneNumber}</Text>
-            </View>
-        );
-    }
-
-    renderProfileStatInfo = () => {
-        const { sellerAdsList } = this.props;
-        const postCount = sellerAdsList ? sellerAdsList.length : 0;
-
-        return (
-            <View style={profileStatInfoStyle}>
-                <View style={profileStatTextContainerStyle}>
-                    <Text style={profileStatCountTextStyle}>{postCount}</Text>
-                    <Text style={profileStatTitleTextStyle}>Posts</Text>
-                </View>
-                <View style={profileStatTextContainerStyle}>
-                    <Text style={profileStatCountTextStyle}>22.1K</Text>
-                    <Text style={profileStatTitleTextStyle}>Followers</Text>
-                </View>
-                <View style={profileStatTextContainerStyle}>
-                    <Text style={profileStatCountTextStyle}>536</Text>
-                    <Text style={profileStatTitleTextStyle}>Following</Text>
-                </View>
+                <Text style={[addressTextStyle, { marginHorizontal: 0, alignSelf: 'flex-start' }]}>{sellerphoneNumber}</Text>
             </View>
         );
     }
 
     renderFollowButton = () => {
         return (
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                <Text style={followButtonTextstyle}>FOLLOW</Text>
+            <View style={contactButtonContainerStyle}>
+                <Text style={followButtonTextstyle}>ABOUT</Text>
                 <Text style={{ fontSize: 18, color: Color.placeholderWhite, fontFamily: Fonts.CharterBT }}>|</Text>
                 <Text style={followButtonTextstyle}>CONTACT</Text>
             </View>
@@ -144,11 +129,10 @@ class ProfilePublic extends Component {
                 showsVerticalScrollIndicator={false}
                 style={conatinerStyle}
             >
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', backgroundColor: Color.dark, justifyContent: 'flex-start', alignItems: 'center' }}>
                     {this.renderProfileHeader()}
                     {this.renderUserBasicInfo()}
                 </View>
-                {this.renderProfileStatInfo()}
                 {this.renderFollowButton()}
                 {this.renderPublishedPostList()}
             </ScrollView>
@@ -162,10 +146,7 @@ const {
     nameTextStyle,
     addressTextStyle,
     gridViewCardStyle,
-    profileStatInfoStyle,
-    profileStatTextContainerStyle,
-    profileStatCountTextStyle,
-    profileStatTitleTextStyle,
+    contactButtonContainerStyle,
     followButtonTextstyle,
     activityIndicatorStyle
 } = styles;

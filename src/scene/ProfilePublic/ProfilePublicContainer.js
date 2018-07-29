@@ -28,11 +28,14 @@ class ProfilePublicContainer extends Component {
         let copySellerAdsList = [...sellerAdsList];
 
         //For order by issue refer this discussion : https://github.com/invertase/react-native-firebase/issues/568
-        await postCollectionRef.where('ownerID', '==', ownerID).orderBy('updatedAt', 'desc').get()
-            .then((snapshot) => {
+        await postCollectionRef
+            .where('ownerID', '==', ownerID)
+            .orderBy('updatedAt', 'desc')
+            .get().then((snapshot) => {
                 let dSArray = [];
                 snapshot.forEach((doc) => {
-                    dSArray.push(doc.data());
+                    const mergedObj = { ...doc.data(), ...{ postID: doc.id } };
+                    dSArray.push(mergedObj);
                 });
                 copySellerAdsList = [...copySellerAdsList, ...dSArray];
             })
@@ -58,6 +61,7 @@ class ProfilePublicContainer extends Component {
             productDescription,
             selectedLocation,
             ownerID,
+            postID,
             //Images
             image_0,
             image_1,
@@ -102,6 +106,7 @@ class ProfilePublicContainer extends Component {
             productDescription: productDescription,
             selectedLocation: selectedLocation,
             ownerID: ownerID,
+            postID: postID,
             imageDataSource: filteredImageDataSource,
             isNavigatedFromPublicProfile: true
         });

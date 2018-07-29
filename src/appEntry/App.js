@@ -33,7 +33,9 @@ const StackNavigation = StackNavigator({
             },
             headerStyle: {
                 backgroundColor: '#2a2a2a',
-                elevation: 0 //Only for Android
+                elevation: 0, //Only for Android
+                borderBottomColor: 'transparent', //For ios
+                borderBottomWidth: 0
             },
             headerTintColor: '#FFFFFF',
             title: "Product Description",
@@ -57,7 +59,7 @@ const StackNavigation = StackNavigator({
                 elevation: 0 //Only for Android
             },
             headerTintColor: '#FFFFFF',
-            title: "Ads",
+            title: "Your Ads",
             drawerLockMode: 'locked-closed'
         })
     },
@@ -114,7 +116,9 @@ const StackNavigation = StackNavigator({
             },
             headerStyle: {
                 backgroundColor: '#2a2a2a',
-                elevation: 0 //Only for Android
+                elevation: 0, //Only for Android
+                borderBottomColor: 'transparent', //For ios
+                borderBottomWidth: 0
             },
             headerTintColor: '#FFFFFF',
             title: "User Profile",

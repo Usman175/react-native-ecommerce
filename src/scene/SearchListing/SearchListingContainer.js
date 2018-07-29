@@ -52,7 +52,8 @@ class SearchListingContainer extends Component {
                 let dSArray = [];
                 querySnapshot.forEach(function (doc) {
                     // doc.data() is never undefined for query doc snapshots
-                    dSArray.push(doc.data());
+                    const mergedObj = { ...doc.data(), ...{ postID: doc.id } };
+                    dSArray.push(mergedObj);
                 });
                 copyPostListDataSource = [...copyPostListDataSource, ...dSArray];
             }).catch((err) => {

@@ -19,13 +19,14 @@ export default styles = StyleSheet.create({
         fontSize: 20,
         alignSelf: 'center',
         fontWeight: 'bold',
-        color: colors.dark,
-        fontFamily: Fonts.CharterBT
+        color: colors.lightBlueWhite,
+        fontFamily: Fonts.CharterBT,
+        width: screenWidth / 2
     },
     addressTextStyle: {
         fontSize: 14,
         alignSelf: 'center',
-        color: colors.lightDark,
+        color: colors.lightBlueWhite,
         fontFamily: Fonts.CharterBT,
         marginHorizontal: 5
     },
@@ -37,29 +38,16 @@ export default styles = StyleSheet.create({
         height: screenWidth / 3.2,
         margin: 1.5,
     },
-    profileStatInfoStyle: {
+    contactButtonContainerStyle: {
+        backgroundColor: Color.dark,
         width: screenWidth,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: colors.semiDarkWhite,
-        padding: 10,
-        marginVertical: 15
-    },
-    profileStatTextContainerStyle: {
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    profileStatCountTextStyle: {
-        fontSize: 18,
-        color: Color.dark,
-        fontFamily: Fonts.CharterBT
-    },
-    profileStatTitleTextStyle: {
-        fontSize: 14,
-        color: Color.lightDark
+        //  borderWidth: StyleSheet.hairlineWidth,
+        // borderColor: colors.semiDarkWhite,
+        padding: 15,
+        // marginVertical: 5
     },
     followButtonTextstyle: {
         fontSize: 18,

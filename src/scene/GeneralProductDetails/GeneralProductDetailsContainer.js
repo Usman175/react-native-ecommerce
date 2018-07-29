@@ -5,7 +5,7 @@ import { Share } from 'react-native';
 
 import GeneralProductDetails from './GeneralProductDetails';
 
-import { userCollectionRef } from '../../utilities/DBReferences';
+import { userCollectionRef, bookmarksCollectionRef } from '../../utilities/DBReferences';
 import { numberWithCommas } from '../../utilities/Functions';
 
 class GeneralProductDetailsContainer extends Component {
@@ -17,14 +17,19 @@ class GeneralProductDetailsContainer extends Component {
             clickedPhotoIndex: 0,
 
             //FireStore
-            sellerData: {}
+            sellerData: {},
+
+            //Bookmark
+            isBookmarked: false,
+            currentUserID: undefined
         };
     }
 
     componentWillMount() {
-        const { ownerID } = this.props;
+        const { ownerID, postID } = this.props;
         let userRef = userCollectionRef.doc(`${ownerID}`);
 
+        //Seller Info
         userRef.get()
             .then((doc) => {
                 const { firstName, lastName, ownerID, phoneNumber, gender, address, email, profileImageURL } = doc.data();
@@ -45,6 +50,44 @@ class GeneralProductDetailsContainer extends Component {
             }).catch((err) => {
                 //
             });
+
+        //UserInfo
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                const userID = `${user.phoneNumber}`; //Keep doc id as string.
+
+                const userRef = userCollectionRef.doc(userID);
+                /**
+                 * Check if user already logged In with phone number and completed the sign-up form.
+                 */
+                userRef.get().then((doc) => {
+                    if (doc.exists) {
+                        this.setState({
+                            currentUserID: userID
+                        });
+
+                        /**
+                         * Update Bookmark Icon
+                         */
+                        const bookmarkRef = bookmarksCollectionRef.doc(`${postID}_${userID}`);
+                        bookmarkRef.get()
+                            .then((doc) => {
+                                if (doc.exists) {
+                                    this.setState({
+                                        isBookmarked: true
+                                    });
+                                }
+                            }).catch((err) => {
+                                //
+                            });
+                    }
+                }).catch((err) => {
+                    this.setState({
+                        currentUserID: undefined //if undefined then some error in fetching data
+                    });
+                });
+            }
+        });
     }
 
     showPhotoViewer = (index) => {
@@ -114,11 +157,55 @@ class GeneralProductDetailsContainer extends Component {
             });
     }
 
+    onPressBookmarkButton = () => {
+        const { postID } = this.props;
+        const { currentUserID } = this.state;
+
+        if (currentUserID) {
+            const userID = currentUserID;
+            const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+            let bookmarkData = {
+                userID,
+                postID,
+                updatedAt: timestamp
+            };
+
+            const bookmarkRef = bookmarksCollectionRef.doc(`${postID}_${userID}`);
+            bookmarkRef.get()
+                .then((doc) => {
+                    if (!doc.exists) {
+                        bookmarkRef.set(bookmarkData).then(() => {
+                            //Update Bookmark Icon
+                            this.setState({
+                                isBookmarked: true
+                            });
+                        }).catch((error) => {
+                            //Don't show Bookmark Icon
+                        });
+                    } else {
+                        //Delete the bookmark Doc
+                        bookmarkRef.delete().then(() => {
+                            //Update Bookmark Icon
+                            this.setState({
+                                isBookmarked: false
+                            });
+                        }).catch((error) => {
+                            //Do Nothing
+                        });
+                    }
+                }).catch((err) => {
+                    //
+                });
+        }
+    }
+
     render() {
         const {
             isPhotoViewerVisible,
             clickedPhotoIndex,
-            sellerData
+            sellerData,
+            isBookmarked,
+            currentUserID
         } = this.state;
 
         const {
@@ -147,8 +234,13 @@ class GeneralProductDetailsContainer extends Component {
                 photoViewerDataSource={this.photoViewerDataSource()}
                 onPressSellerAvatar={this.onPressSellerAvatar}
                 onPressShareButton={this.onPressShareButton}
+                onPressBookmarkButton={this.onPressBookmarkButton}
                 //FireStore
                 sellerData={sellerData}
+
+                //Bookmark
+                isBookmarked={isBookmarked}
+                currentUserID={currentUserID}
             />
         );
     }
@@ -163,6 +255,7 @@ GeneralProductDetailsContainer.propTypes = {
     price: PropTypes.number,
     location: PropTypes.string,
     ownerID: PropTypes.string,
+    postID: PropTypes.string,
     imageDataSource: PropTypes.array,
     isNavigatedFromPublicProfile: PropTypes.bool
 };

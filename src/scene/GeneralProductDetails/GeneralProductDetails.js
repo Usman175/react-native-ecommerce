@@ -22,7 +22,14 @@ import Color from '../../styles/Color';
 class GeneralProductDetails extends Component {
 
     renderImageView = () => {
-        const { thumbnailURL, time, title } = this.props;
+        const {
+            thumbnailURL,
+            time,
+            title,
+            onPressBookmarkButton,
+            isBookmarked,
+            currentUserID
+        } = this.props;
 
         return (
             <View style={containerStyle}>
@@ -32,10 +39,23 @@ class GeneralProductDetails extends Component {
                 />
                 <View style={semiTransparentViewStyle} />
                 <View style={textContainerStyle}>
-                    <Animatable.Text style={titleTextStyle} animation="fadeInLeft" delay={200}></Animatable.Text>
+                    {currentUserID ?
+                        <Icon
+                            containerStyle={{ alignSelf: 'flex-end', padding: 10 }}
+                            name={isBookmarked ? "bookmark" : "bookmark-border"}
+                            type="materialicon"
+                            //size={18}
+                            color={Color.lightWhite}
+                            underlayColor="transparent"
+                            onPress={onPressBookmarkButton}
+                        />
+                        :
+                        <View />
+                    }
                     <Animatable.Text style={titleTextStyle} animation="fadeInLeft" delay={200}>{title}</Animatable.Text>
                     <Animatable.Text style={dateTextStyle} animation="fadeInLeft" delay={200}>{time}</Animatable.Text>
                 </View>
+
             </View >
         );
     }
@@ -59,6 +79,23 @@ class GeneralProductDetails extends Component {
                     underlayColor="transparent"
                 />
                 <Text style={locationTextStyle}>{location}</Text>
+            </View>
+        );
+    }
+
+    renderProductTag = () => {
+        const { location } = this.props;
+
+        return (
+            <View style={{ flexDirection: 'row', marginHorizontal: 25, marginVertical: 5, alignContent: 'center' }}>
+                <Icon
+                    name="tag"
+                    type="simple-line-icon"
+                    color={Color.golden}
+                    underlayColor="transparent"
+                    size={16}
+                />
+                <Text style={[locationTextStyle]}>For Rent</Text>
             </View>
         );
     }
@@ -178,18 +215,26 @@ class GeneralProductDetails extends Component {
         const sellerPhoneNumber = phoneNumber ? phoneNumber : '';
 
         return (
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Avatar
-                    rounded
-                    width={50}
-                    height={50}
-                    containerStyle={{ marginHorizontal: 25 }}
-                    source={{ uri: profileImageURL }}
-                    activeOpacity={0.7}
-                    onPress={onPressSellerAvatar}
-                />
-                <View style={{ flexDirection: 'column' }}>
-                    <Text style={[followButtonTextstyle, { color: Color.dark, marginBottom: 5 }]}>{sellerFirstName + ' ' + sellerLastName}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 25 }}>
+                <View style={{ flex: 1 }}>
+                    <Avatar
+                        rounded
+                        width={60}
+                        height={60}
+                        containerStyle={{ marginRight: 25 }}
+                        source={{ uri: profileImageURL }}
+                        activeOpacity={0.7}
+                        onPress={onPressSellerAvatar}
+                    />
+                </View>
+                <View style={{ flexDirection: 'column', flex: 3 }}>
+                    <Text
+                        numberOfLines={2}
+                        ellipsizeMode="tail"
+                        style={[followButtonTextstyle, { color: Color.dark, marginBottom: 5 }]}
+                    >
+                        {sellerFirstName + ' ' + sellerLastName}
+                    </Text>
                     <Text style={[followButtonTextstyle, { color: Color.lightDark, fontSize: 14 }]}>{sellerPhoneNumber}</Text>
                 </View>
             </View>
@@ -245,6 +290,8 @@ class GeneralProductDetails extends Component {
                         <Text style={boldSeparator}>______</Text>
                         {this.renderLocation()}
                         {this.renderProductDescription()}
+                        <Text style={[boldSeparator, { marginTop: 5 }]}>__</Text>
+                        {this.renderProductTag()}
                         {this.renderPhotoViewDivider('Photos')}
                         {this.renderPhotoList()}
                         {this.renderPhotoViewer()}
