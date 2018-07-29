@@ -49,65 +49,6 @@ class EditUserAdContainer extends Component {
         });
     }
 
-    onPressAdsCard = (item) => {
-        const { navigation } = this.props;
-        const {
-            updatedAt,
-            productPrice,
-            productTitle,
-            productDescription,
-            selectedLocation,
-            ownerID,
-            //Images
-            image_0,
-            image_1,
-            image_2,
-            image_3,
-            image_4,
-            image_5,
-            image_6,
-            image_7
-        } = item;
-        let formatedDate = '';
-
-        if (updatedAt) {
-            Moment.locale('en');
-            //formatedDate = Moment(updatedAt).format("Do-MMM-YYYY");
-            formatedDate = Moment(updatedAt).fromNow();
-        }
-
-        const imageDataSource = [
-            // { url: coverImageURL, index: 0 },
-            { url: image_1, index: 1 },
-            { url: image_2, index: 2 },
-            { url: image_3, index: 3 },
-            { url: image_4, index: 4 },
-            { url: image_5, index: 5 },
-            { url: image_6, index: 6 },
-            { url: image_7, index: 7 }
-        ];
-        const filteredImageDataSource = [];
-
-        for (const obj of imageDataSource) {
-            if (obj && obj.url) {
-                filteredImageDataSource.push(obj)
-            }
-        }
-
-        navigation.navigate('GeneralProductDetails', {
-            thumbnailURL: image_0,
-            time: formatedDate,
-            price: productPrice,
-            title: productTitle,
-            productDescription: productDescription,
-            selectedLocation: selectedLocation,
-            ownerID: ownerID,
-            imageDataSource: filteredImageDataSource,
-            //isNavigatedFromPublicProfile: true
-        });
-
-    }
-
     onPressUpdatePhotos = (item) => {
         const { navigation } = this.props;
         const {
@@ -141,6 +82,7 @@ class EditUserAdContainer extends Component {
 
     render() {
         const { sellerAdsList, isFetchingAdsDataFromFirestore } = this.state;
+        const { navigation } = this.props;
 
         return (
             <EditUserAd
@@ -149,6 +91,7 @@ class EditUserAdContainer extends Component {
                 onPressAdsCard={this.onPressAdsCard}
                 onPressUpdatePhotos={this.onPressUpdatePhotos}
                 onPressEditAdDetails={this.onPressEditAdDetails}
+                navigation={navigation}
             />
         );
     }

@@ -6,37 +6,33 @@ import Fonts from '../../styles/Fonts';
 import { screenWidth } from '../../utilities/ScreenSize';
 import Color from '../../styles/Color';
 
-const cardWidth = screenWidth * 0.9;
-const cardHeight = cardWidth / 2;
+
+const cardWidth = screenWidth;
+const cardHeight = cardWidth * 0.6; //Card Dimension are similar to those of feed cards
+const contentHeight = cardHeight * 0.25
 
 export default styles = StyleSheet.create({
     conatinerStyle: {
-        backgroundColor: colors.lightBlueWhite,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1
     },
     listCardStyle: {
-        flexDirection: 'row',
+        backgroundColor: colors.lightWhite,
+        marginBottom: 10,
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         width: cardWidth,
-        height: cardHeight,
-        backgroundColor: colors.placeholderWhite,
-        marginHorizontal: 5,
-        marginVertical: 10,
-        ...Platform.select({
-            ios: {
-                shadowColor: 'rgba(0,0,0, .3)',
-                shadowOffset: { height: 0, width: 0 },
-                shadowOpacity: 1,
-                shadowRadius: 2,
-            },
-            android: {
-                elevation: 2,
-            }
-        })
+        height: cardHeight + contentHeight + contentHeight
+    },
+    editTextstyle: {
+        color: Color.lightDark,
+        fontSize: 14,
+        fontFamily: Fonts.CharterBT,
+        paddingHorizontal: 5,
+        alignSelf: 'center'
     },
     listCardImageStyle: {
         resizeMode: 'cover',
