@@ -137,6 +137,8 @@ class EditUserAdContainer extends Component {
         });
     }
 
+    //Note: onDelete also delete bookmarked post doc.
+
     render() {
         const { sellerAdsList, isFetchingAdsDataFromFirestore } = this.state;
 
