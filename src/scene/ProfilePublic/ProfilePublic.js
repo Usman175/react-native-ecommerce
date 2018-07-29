@@ -92,7 +92,13 @@ class ProfilePublic extends Component {
 
         return (
             <View style={{ flexDirection: 'column', backgroundColor: colors.dark }}>
-                <Text style={nameTextStyle}>{sellerFirstName + ' ' + sellerLastName}</Text>
+                <Text
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                    style={nameTextStyle}
+                >
+                    {sellerFirstName + ' ' + sellerLastName}
+                </Text>
                 <View style={{ flexDirection: 'row', alignSelf: 'flex-start', marginTop: 10 }}>
                     <Icon
                         name="ios-pin-outline"
@@ -102,7 +108,7 @@ class ProfilePublic extends Component {
                     />
                     <Text style={addressTextStyle}>{address}</Text>
                 </View>
-                <Text style={[addressTextStyle, { marginHorizontal: 0,alignSelf: 'flex-start' }]}>{sellerphoneNumber}</Text>
+                <Text style={[addressTextStyle, { marginHorizontal: 0, alignSelf: 'flex-start' }]}>{sellerphoneNumber}</Text>
             </View>
         );
     }

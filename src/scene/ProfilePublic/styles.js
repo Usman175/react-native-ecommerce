@@ -20,7 +20,8 @@ export default styles = StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         color: colors.lightBlueWhite,
-        fontFamily: Fonts.CharterBT
+        fontFamily: Fonts.CharterBT,
+        width: screenWidth / 2
     },
     addressTextStyle: {
         fontSize: 14,
