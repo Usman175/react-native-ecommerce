@@ -215,18 +215,26 @@ class GeneralProductDetails extends Component {
         const sellerPhoneNumber = phoneNumber ? phoneNumber : '';
 
         return (
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Avatar
-                    rounded
-                    width={50}
-                    height={50}
-                    containerStyle={{ marginHorizontal: 25 }}
-                    source={{ uri: profileImageURL }}
-                    activeOpacity={0.7}
-                    onPress={onPressSellerAvatar}
-                />
-                <View style={{ flexDirection: 'column' }}>
-                    <Text style={[followButtonTextstyle, { color: Color.dark, marginBottom: 5 }]}>{sellerFirstName + ' ' + sellerLastName}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 25 }}>
+                <View style={{ flex: 1 }}>
+                    <Avatar
+                        rounded
+                        width={60}
+                        height={60}
+                        containerStyle={{ marginRight: 25 }}
+                        source={{ uri: profileImageURL }}
+                        activeOpacity={0.7}
+                        onPress={onPressSellerAvatar}
+                    />
+                </View>
+                <View style={{ flexDirection: 'column', flex: 3 }}>
+                    <Text
+                        numberOfLines={2}
+                        ellipsizeMode="tail"
+                        style={[followButtonTextstyle, { color: Color.dark, marginBottom: 5 }]}
+                    >
+                        {sellerFirstName + ' ' + sellerLastName}
+                    </Text>
                     <Text style={[followButtonTextstyle, { color: Color.lightDark, fontSize: 14 }]}>{sellerPhoneNumber}</Text>
                 </View>
             </View>
