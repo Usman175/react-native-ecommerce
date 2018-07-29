@@ -107,32 +107,10 @@ class ProfilePublic extends Component {
         );
     }
 
-    renderProfileStatInfo = () => {
-        const { sellerAdsList } = this.props;
-        const postCount = sellerAdsList ? sellerAdsList.length : 0;
-
-        return (
-            <View style={profileStatInfoStyle}>
-                <View style={profileStatTextContainerStyle}>
-                    <Text style={profileStatCountTextStyle}>{postCount}</Text>
-                    <Text style={profileStatTitleTextStyle}>Posts</Text>
-                </View>
-                <View style={profileStatTextContainerStyle}>
-                    <Text style={profileStatCountTextStyle}>22.1K</Text>
-                    <Text style={profileStatTitleTextStyle}>Followers</Text>
-                </View>
-                <View style={profileStatTextContainerStyle}>
-                    <Text style={profileStatCountTextStyle}>536</Text>
-                    <Text style={profileStatTitleTextStyle}>Following</Text>
-                </View>
-            </View>
-        );
-    }
-
     renderFollowButton = () => {
         return (
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                <Text style={followButtonTextstyle}>FOLLOW</Text>
+            <View style={contactButtonContainerStyle}>
+                <Text style={followButtonTextstyle}>ABOUT</Text>
                 <Text style={{ fontSize: 18, color: Color.placeholderWhite, fontFamily: Fonts.CharterBT }}>|</Text>
                 <Text style={followButtonTextstyle}>CONTACT</Text>
             </View>
@@ -149,7 +127,6 @@ class ProfilePublic extends Component {
                     {this.renderProfileHeader()}
                     {this.renderUserBasicInfo()}
                 </View>
-                {this.renderProfileStatInfo()}
                 {this.renderFollowButton()}
                 {this.renderPublishedPostList()}
             </ScrollView>
@@ -163,10 +140,7 @@ const {
     nameTextStyle,
     addressTextStyle,
     gridViewCardStyle,
-    profileStatInfoStyle,
-    profileStatTextContainerStyle,
-    profileStatCountTextStyle,
-    profileStatTitleTextStyle,
+    contactButtonContainerStyle,
     followButtonTextstyle,
     activityIndicatorStyle
 } = styles;

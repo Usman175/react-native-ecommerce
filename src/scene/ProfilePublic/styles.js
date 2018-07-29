@@ -37,29 +37,15 @@ export default styles = StyleSheet.create({
         height: screenWidth / 3.2,
         margin: 1.5,
     },
-    profileStatInfoStyle: {
+    contactButtonContainerStyle: {
         width: screenWidth,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
         borderWidth: StyleSheet.hairlineWidth,
         borderColor: colors.semiDarkWhite,
-        padding: 10,
-        marginVertical: 15
-    },
-    profileStatTextContainerStyle: {
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    profileStatCountTextStyle: {
-        fontSize: 18,
-        color: Color.dark,
-        fontFamily: Fonts.CharterBT
-    },
-    profileStatTitleTextStyle: {
-        fontSize: 14,
-        color: Color.lightDark
+        padding: 15,
+        marginVertical: 5
     },
     followButtonTextstyle: {
         fontSize: 18,
