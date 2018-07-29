@@ -69,33 +69,47 @@ class EditUserAd extends Component {
         return (
             <View style={listCardStyle}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 10, justifyContent: 'space-around' }}>
-                    <Icon
-                        name="pencil"
-                        type="evilicon"
-                        color={Color.lightDark}
-                        underlayColor="transparent"
+                    <TouchableOpacity
+                        style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
                         onPress={() => onPressEditAdDetails(item)}
-                    />
-                    <Text style={editTextstyle} onPress={() => onPressEditAdDetails(item)}>Edit Post</Text>
-                    <Text style={editTextstyle}>| </Text>
-                    <Icon
-                        name="ios-images-outline"
-                        type="ionicon"
-                        size={18}
-                        color={Color.lightDark}
-                        underlayColor="transparent"
-                        onPress={() => onPressUpdatePhotos(item)}
-                    />
-                    <Text style={editTextstyle} onPress={() => onPressUpdatePhotos(item)}>Edit Photos</Text>
-                    <Text style={editTextstyle}>| </Text>
-                    <Icon
-                        name="trash"
-                        type="evilicon"
+                    >
+                        <Icon
+                            name="pencil"
+                            type="evilicon"
+                            color={Color.lightDark}
+                            underlayColor="transparent"
 
-                        color={Color.lightDark}
-                        underlayColor="transparent"
-                    />
-                    <Text style={editTextstyle}>Delete</Text>
+                        />
+                        <Text style={editTextstyle}>Edit Post</Text>
+                    </TouchableOpacity>
+                    <Text style={editTextstyle}>| </Text>
+                    <TouchableOpacity
+                        style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                        onPress={() => onPressUpdatePhotos(item)}
+                    >
+                        <Icon
+                            name="ios-images-outline"
+                            type="ionicon"
+                            size={18}
+                            color={Color.lightDark}
+                            underlayColor="transparent"
+
+                        />
+                        <Text style={editTextstyle}>Edit Photos</Text>
+                    </TouchableOpacity>
+                    <Text style={editTextstyle}>| </Text>
+                    <TouchableOpacity
+                        style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                    >
+                        <Icon
+                            name="trash"
+                            type="evilicon"
+
+                            color={Color.lightDark}
+                            underlayColor="transparent"
+                        />
+                        <Text style={editTextstyle}>Delete</Text>
+                    </TouchableOpacity>
                 </View >
                 <FeedsCard
                     time={formatedDate}
@@ -166,6 +180,7 @@ EditUserAd.propTypes = {
     sellerAdsList: PropTypes.array,
     onPressAdsCard: PropTypes.func,
     onPressUpdatePhotos: PropTypes.func,
+    onPressEditAdDetails: PropTypes.func,
     isFetchingAdsDataFromFirestore: PropTypes.bool
 };
 
