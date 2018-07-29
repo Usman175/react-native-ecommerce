@@ -2,6 +2,7 @@ import firebase from 'react-native-firebase';
 
 export const postCollectionRef = firebase.firestore().collection('posts');
 export const userCollectionRef = firebase.firestore().collection('users');
+export const bookmarksCollectionRef = firebase.firestore().collection('bookmarks');
 
 //For order by issue refer this discussion : https://github.com/invertase/react-native-firebase/issues/568
 

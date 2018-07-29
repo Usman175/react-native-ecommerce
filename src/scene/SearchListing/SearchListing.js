@@ -58,6 +58,7 @@ class SearchListing extends Component {
         const {
             updatedAt,
             ownerID,
+            postID,
             productPrice,
             productTitle,
             productDescription,
@@ -113,6 +114,7 @@ class SearchListing extends Component {
                 formatedMonth={formatedMonth}
                 formatedYear={formatedYear}
                 ownerID={ownerID}
+                postID={postID}
                 price={productPrice}
                 title={productTitle}
                 productDescription={productDescription}

@@ -38,6 +38,7 @@ export class FeedsCard extends Component {
     onCardPress = () => {
         const {
             ownerID,
+            postID,
             price,
             time,
             title,
@@ -52,6 +53,7 @@ export class FeedsCard extends Component {
             {
                 time: time,
                 ownerID: ownerID,
+                postID: postID,
                 price: price,
                 title: title,
                 productDescription: productDescription,
@@ -148,6 +150,7 @@ export class FeedsCard extends Component {
 FeedsCard.propTypes = {
     time: PropTypes.string,
     ownerID: PropTypes.string,
+    postID: PropTypes.string,
     price: PropTypes.number,
     title: PropTypes.string,
     imageURL: PropTypes.string,

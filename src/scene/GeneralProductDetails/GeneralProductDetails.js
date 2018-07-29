@@ -22,7 +22,14 @@ import Color from '../../styles/Color';
 class GeneralProductDetails extends Component {
 
     renderImageView = () => {
-        const { thumbnailURL, time, title } = this.props;
+        const {
+            thumbnailURL,
+            time,
+            title,
+            onPressBookmarkButton,
+            isBookmarked,
+            currentUserID
+        } = this.props;
 
         return (
             <View style={containerStyle}>
@@ -32,10 +39,23 @@ class GeneralProductDetails extends Component {
                 />
                 <View style={semiTransparentViewStyle} />
                 <View style={textContainerStyle}>
-                    <Animatable.Text style={titleTextStyle} animation="fadeInLeft" delay={200}></Animatable.Text>
+                    {currentUserID ?
+                        <Icon
+                            containerStyle={{ alignSelf: 'flex-end', padding: 10 }}
+                            name={isBookmarked ? "bookmark" : "bookmark-border"}
+                            type="materialicon"
+                            //size={18}
+                            color={Color.lightWhite}
+                            underlayColor="transparent"
+                            onPress={onPressBookmarkButton}
+                        />
+                        :
+                        <View />
+                    }
                     <Animatable.Text style={titleTextStyle} animation="fadeInLeft" delay={200}>{title}</Animatable.Text>
                     <Animatable.Text style={dateTextStyle} animation="fadeInLeft" delay={200}>{time}</Animatable.Text>
                 </View>
+
             </View >
         );
     }
