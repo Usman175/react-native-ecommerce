@@ -83,6 +83,23 @@ class GeneralProductDetails extends Component {
         );
     }
 
+    renderProductTag = () => {
+        const { location } = this.props;
+
+        return (
+            <View style={{ flexDirection: 'row', marginHorizontal: 25, marginVertical: 5, alignContent: 'center' }}>
+                <Icon
+                    name="tag"
+                    type="simple-line-icon"
+                    color={Color.golden}
+                    underlayColor="transparent"
+                    size={16}
+                />
+                <Text style={[locationTextStyle]}>Used Product</Text>
+            </View>
+        );
+    }
+
     renderProductDescription = () => {
         const { details } = this.props;
 
@@ -265,6 +282,7 @@ class GeneralProductDetails extends Component {
                         <Text style={boldSeparator}>______</Text>
                         {this.renderLocation()}
                         {this.renderProductDescription()}
+                        {this.renderProductTag()}
                         {this.renderPhotoViewDivider('Photos')}
                         {this.renderPhotoList()}
                         {this.renderPhotoViewer()}
