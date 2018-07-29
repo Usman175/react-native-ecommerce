@@ -102,7 +102,7 @@ class ProfilePublic extends Component {
                     />
                     <Text style={addressTextStyle}>{address}</Text>
                 </View>
-                <Text style={addressTextStyle}>{sellerphoneNumber}</Text>
+                <Text style={[addressTextStyle, { marginHorizontal: 0,alignSelf: 'flex-start' }]}>{sellerphoneNumber}</Text>
             </View>
         );
     }
