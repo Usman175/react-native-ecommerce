@@ -1,17 +1,24 @@
 import { StyleSheet, Platform } from 'react-native';
 
-import { SLIDER_HEIGHT, screenWidth, screenHeight } from '../../utilities/ScreenSize';
+import {
+    screenWidth,
+    deviceScaledHeight
+} from '../../utilities/ScreenSize';
 import Colors from '../../styles/Color';
+import Fonts from '../../styles/Fonts';
+import Color from '../../styles/Color';
 
 export default StyleSheet.create({
     searchbarContainerStyle: {
-        width: screenWidth - 65,
-        height: 50,
-        borderRadius: 25,
+        width: screenWidth * 0.8,
+        height: 50,//deviceScaledHeight(60),
+        borderRadius: 30, //deviceScaledHeight(30),
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'stretch',
         position: 'absolute',
+        paddingHorizontal: 25,
         ...Platform.select({
             ios: {
                 shadowColor: 'rgba(0,0,0, .2)',
@@ -25,6 +32,9 @@ export default StyleSheet.create({
         })
     },
     textInputStyle: {
-        width: screenWidth - 85,
+        flex: 1,
+        fontFamily: Fonts.DancingScriptOT,
+        fontSize: 18,
+        color: Color.dark
     }
 });

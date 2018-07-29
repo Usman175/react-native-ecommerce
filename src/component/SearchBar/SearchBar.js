@@ -1,15 +1,11 @@
 
 import React, { Component } from 'react';
 import {
-    Image,
     View,
     TextInput,
-    Text,
     TouchableOpacity
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Icon } from 'react-native-elements';
-import * as Animatable from 'react-native-animatable';
 
 import styles from './styles';
 import Color from '../../styles/Color';
@@ -27,12 +23,12 @@ export class SearchBar extends Component {
                 <TextInput
                     style={textInputStyle}
                     placeholder='Search for the product....'
-                    placeholderTextColor={Color.lightDark}
+                    placeholderTextColor={Color.dark}
                     returnKeyType={'search'}
                     onSubmitEditing={() => console.log(' search button pressed.....')}
                     multiline={false}
                     underlineColorAndroid='transparent'
-                    maxLength={10}
+                    maxLength={40}
                     clearButtonMode='always'
                 // onChangeText={(text) => onProductPriceInput(text.replace(/[^0-9]/g, ''))}
                 //value={`₹ ${numberWithCommas(productPrice)}`}
