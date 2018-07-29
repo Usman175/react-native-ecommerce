@@ -95,7 +95,7 @@ class GeneralProductDetails extends Component {
                     underlayColor="transparent"
                     size={16}
                 />
-                <Text style={[locationTextStyle]}>Used Product</Text>
+                <Text style={[locationTextStyle]}>For Rent</Text>
             </View>
         );
     }
@@ -282,6 +282,7 @@ class GeneralProductDetails extends Component {
                         <Text style={boldSeparator}>______</Text>
                         {this.renderLocation()}
                         {this.renderProductDescription()}
+                        <Text style={[boldSeparator, { marginTop: 5 }]}>__</Text>
                         {this.renderProductTag()}
                         {this.renderPhotoViewDivider('Photos')}
                         {this.renderPhotoList()}
