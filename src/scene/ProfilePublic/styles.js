@@ -19,13 +19,13 @@ export default styles = StyleSheet.create({
         fontSize: 20,
         alignSelf: 'center',
         fontWeight: 'bold',
-        color: colors.dark,
+        color: colors.lightBlueWhite,
         fontFamily: Fonts.CharterBT
     },
     addressTextStyle: {
         fontSize: 14,
         alignSelf: 'center',
-        color: colors.lightDark,
+        color: colors.lightBlueWhite,
         fontFamily: Fonts.CharterBT,
         marginHorizontal: 5
     },
@@ -38,14 +38,15 @@ export default styles = StyleSheet.create({
         margin: 1.5,
     },
     contactButtonContainerStyle: {
+        backgroundColor: Color.dark,
         width: screenWidth,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: colors.semiDarkWhite,
+        //  borderWidth: StyleSheet.hairlineWidth,
+        // borderColor: colors.semiDarkWhite,
         padding: 15,
-        marginVertical: 5
+        // marginVertical: 5
     },
     followButtonTextstyle: {
         fontSize: 18,

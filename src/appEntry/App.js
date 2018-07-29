@@ -114,7 +114,9 @@ const StackNavigation = StackNavigator({
             },
             headerStyle: {
                 backgroundColor: '#2a2a2a',
-                elevation: 0 //Only for Android
+                elevation: 0, //Only for Android
+                borderBottomColor: 'transparent', //For ios
+                borderBottomWidth: 0
             },
             headerTintColor: '#FFFFFF',
             title: "User Profile",

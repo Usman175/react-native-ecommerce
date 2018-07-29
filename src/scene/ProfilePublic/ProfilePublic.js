@@ -91,7 +91,7 @@ class ProfilePublic extends Component {
         const sellerphoneNumber = phoneNumber ? phoneNumber : '';
 
         return (
-            <View style={{ flexDirection: 'column', backgroundColor: colors.lightBlueWhite }}>
+            <View style={{ flexDirection: 'column', backgroundColor: colors.dark }}>
                 <Text style={nameTextStyle}>{sellerFirstName + ' ' + sellerLastName}</Text>
                 <View style={{ flexDirection: 'row', alignSelf: 'flex-start', marginTop: 10 }}>
                     <Icon
@@ -123,7 +123,7 @@ class ProfilePublic extends Component {
                 showsVerticalScrollIndicator={false}
                 style={conatinerStyle}
             >
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', backgroundColor: Color.dark, justifyContent: 'flex-start', alignItems: 'center' }}>
                     {this.renderProfileHeader()}
                     {this.renderUserBasicInfo()}
                 </View>
