@@ -59,7 +59,7 @@ const StackNavigation = StackNavigator({
                 elevation: 0 //Only for Android
             },
             headerTintColor: '#FFFFFF',
-            title: "Ads",
+            title: "Your Ads",
             drawerLockMode: 'locked-closed'
         })
     },

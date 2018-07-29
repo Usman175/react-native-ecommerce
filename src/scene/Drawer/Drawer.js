@@ -81,7 +81,7 @@ class Drawer extends Component {
                     });
                 }
                 break;
-            case 'Ads':
+            case 'Your Ads':
                 if (user) {
                     navigation.navigate('EditUserAd', {
                         userID: user.phoneNumber
@@ -132,7 +132,7 @@ class Drawer extends Component {
                 />
                 <View style={{ marginTop: 100 }}>
                     {this.renderRow('Profile')}
-                    {this.renderRow('Ads')}
+                    {this.renderRow('Your Ads')}
                     {this.renderRow('Settings')}
                     {this.renderRow('About')}
                     {this.renderRow('Logout')}
