@@ -13,6 +13,7 @@ import UpdateAdDetails from '../scene/UpdateAdDetails';
 import SearchListing from '../scene/SearchListing';
 import ProfilePublic from '../scene/ProfilePublic';
 import UserProfile from '../scene/UserProfile';
+import Bookmarks from '../scene/Bookmarks';
 import Drawer from '../scene/Drawer';
 import Fonts from '../styles/Fonts';
 
@@ -139,7 +140,22 @@ const StackNavigation = StackNavigator({
             title: "Edit Profile",
             drawerLockMode: 'locked-closed'
         })
-    }
+    },
+    Bookmarks: {
+        screen: Bookmarks,
+        navigationOptions: (props) => ({
+            headerTitleStyle: {
+                fontFamily: Fonts.CharterBT
+            },
+            headerStyle: {
+                backgroundColor: '#2a2a2a',
+                elevation: 0 //Only for Android
+            },
+            headerTintColor: '#FFFFFF',
+            title: "Wish List",
+            drawerLockMode: 'locked-closed'
+        })
+    },
 });
 
 const NavigationDrawer = DrawerNavigator(

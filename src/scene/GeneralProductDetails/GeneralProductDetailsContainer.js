@@ -161,7 +161,7 @@ class GeneralProductDetailsContainer extends Component {
         const { postID } = this.props;
         const { currentUserID } = this.state;
 
-        if (currentUserID) {
+        if (currentUserID && postID) {
             const userID = currentUserID;
             const timestamp = firebase.firestore.FieldValue.serverTimestamp();
             let bookmarkData = {

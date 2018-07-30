@@ -23,7 +23,7 @@ export class SearchBar extends Component {
                 <TextInput
                     style={textInputStyle}
                     placeholder='Search for the product....'
-                    placeholderTextColor={Color.dark}
+                    placeholderTextColor={Color.lightDark}
                     returnKeyType={'search'}
                     onSubmitEditing={() => console.log(' search button pressed.....')}
                     multiline={false}
