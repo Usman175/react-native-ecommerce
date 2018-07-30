@@ -1,10 +1,11 @@
-import { StyleSheet, Platform } from 'react-native';
+import {
+    StyleSheet,
+    Platform
+} from 'react-native';
 
 import {
-    screenWidth,
-    deviceScaledHeight
+    screenWidth
 } from '../../utilities/ScreenSize';
-import Colors from '../../styles/Color';
 import Fonts from '../../styles/Fonts';
 import Color from '../../styles/Color';
 
@@ -33,8 +34,8 @@ export default StyleSheet.create({
     },
     textInputStyle: {
         flex: 1,
-        fontFamily: Fonts.DancingScriptOT,
-        fontSize: 18,
-        color: Color.dark
+        fontFamily: Fonts.CharterBT,
+        fontSize: 16,
+        color: Color.lightWhite
     }
 });
