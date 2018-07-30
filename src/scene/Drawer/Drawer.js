@@ -88,6 +88,14 @@ class Drawer extends Component {
                     });
                 }
                 break;
+
+            case 'Wish List':
+                if (user) {
+                    navigation.navigate('Bookmarks', {
+                        userID: user.phoneNumber
+                    });
+                }
+                break;
         }
     }
 
@@ -133,7 +141,7 @@ class Drawer extends Component {
                 <View style={{ marginTop: 100 }}>
                     {this.renderRow('Profile')}
                     {this.renderRow('Your Ads')}
-                    {this.renderRow('Settings')}
+                    {this.renderRow('Wish List')}
                     {this.renderRow('About')}
                     {this.renderRow('Logout')}
                 </View>
