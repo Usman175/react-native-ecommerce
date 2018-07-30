@@ -55,19 +55,19 @@ class BookmarkContainer extends Component {
 
             await Promise.all(transactionGetArray)
                 .then((result) => {
-                    let a = []
+                    let postArray = []
 
-                    for (let obj of result) {
-                        if (obj) {
-                            a.push(obj._data);
+                    for (let doc of result) {
+                        if (doc) {
+                            const mergedObj = { ...doc.data(), ...{ postID: doc.id } };
+                            postArray.push(mergedObj);
                         }
                     }
 
                     this.setState({
-                        sellerAdsList: a,
+                        sellerAdsList: postArray,
                         isFetchingAdsDataFromFirestore: false
                     });
-
                 })
                 .catch((error) => {
                     console.log("Transaction failed: ", error);
