@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import Color from '../../styles/Color';
+import Fonts from '../../styles/Fonts';
 
 export default StyleSheet.create({
     container: {
@@ -11,6 +12,7 @@ export default StyleSheet.create({
     },
     searchTextInputStyle: {
         padding: 15,
+        fontFamily: Fonts.CharterBT,
         backgroundColor: Color.lightBlueWhite
     }
 });

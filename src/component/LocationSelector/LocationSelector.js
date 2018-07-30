@@ -35,11 +35,14 @@ export class LocationSelector extends Component {
     _keyExtractor = (item, index) => String(item.id);
 
     _renderItem = ({ item }) => {
+        const isSelected = this.props.selectedLocation === item.name;
+        const selectedStyle = { flexDirection: 'column', justifyContent: 'space-around', backgroundColor: Color.lightDark }
+        const normalStyle = { flexDirection: 'column', justifyContent: 'space-around' }
 
         return (
             <TouchableOpacity
                 onPress={() => this.props.updateSelectedLocations(item.name)}
-                style={{ flexDirection: 'column', justifyContent: 'space-around' }}
+                style={isSelected ? selectedStyle : normalStyle}
             >
                 <CheckBox
                     containerStyle={{ borderWidth: 0, backgroundColor: 'transparent' }}
@@ -49,7 +52,7 @@ export class LocationSelector extends Component {
                     checkedIcon="ios-checkmark-circle"
                     textStyle={{ color: Color.dark, fontFamily: Fonts.CharterBT }}
                     uncheckedIcon="ios-checkmark-circle-outline"
-                    checked={this.props.selectedLocation === item.name ? true : false}
+                    checked={isSelected ? true : false}
                     onPress={() => this.props.updateSelectedLocations(item.name)}
                     size={35}
                 />
@@ -65,7 +68,7 @@ export class LocationSelector extends Component {
                 alignItems: 'stretch',
                 height: StyleSheet.hairlineWidth,
                 backgroundColor: Color.placeholderWhite,
-                marginVertical: 5
+                // marginVertical: 5
             }}
             />
         );
@@ -114,6 +117,16 @@ export class LocationSelector extends Component {
                 filteredList
             })
         }
+    }
+
+    getIndexOfSelectedLocation = (location) => {
+        for (let obj of districts) {
+            if (obj.name === location) {
+                return obj.id
+            }
+        }
+
+        return 0;
     }
 
     render() {
