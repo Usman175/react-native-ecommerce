@@ -12,9 +12,11 @@ class ElasticSearchContainer extends Component {
         };
     }
 
-
     render() {
-        const { navigation, changeStateForElasticSearchModal } = this.props;
+        const {
+            navigation,
+            changeStateForElasticSearchModal
+        } = this.props;
 
         return (
             <ElasticSearch
@@ -26,6 +28,7 @@ class ElasticSearchContainer extends Component {
 
 ElasticSearchContainer.propTypes = {
     navigation: PropTypes.object,
+    changeStateForElasticSearchModal: PropTypes.func
 
 }
 

@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    Dimensions,
-    Modal
+    TextInput
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Icon } from 'react-native-elements';
 
 import styles from './styles';
-
-
 import Color from '../../styles/Color';
 
 class ElasticSearch extends Component {
@@ -65,7 +59,6 @@ class ElasticSearch extends Component {
         );
     }
 
-
     render() {
         return (
             <View>
@@ -74,10 +67,8 @@ class ElasticSearch extends Component {
                 {this.renderSeperator()}
             </View>
         );
-
     }
 }
-
 
 const {
     textInputStyle
