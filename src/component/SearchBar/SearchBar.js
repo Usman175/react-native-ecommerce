@@ -1,43 +1,29 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
-    View,
-    TextInput,
+    Text,
     TouchableOpacity
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
-import Color from '../../styles/Color';
 
 const {
     searchbarContainerStyle,
     textInputStyle
 } = styles;
 
-export class SearchBar extends Component {
-
-    render() {
-        return (
-            <View style={searchbarContainerStyle}>
-                <TextInput
-                    style={textInputStyle}
-                    placeholder='Search for the product....'
-                    placeholderTextColor={Color.lightDark}
-                    returnKeyType={'search'}
-                    onSubmitEditing={() => console.log(' search button pressed.....')}
-                    multiline={false}
-                    underlineColorAndroid='transparent'
-                    maxLength={40}
-                    clearButtonMode='always'
-                // onChangeText={(text) => onProductPriceInput(text.replace(/[^0-9]/g, ''))}
-                //value={`₹ ${numberWithCommas(productPrice)}`}
-                />
-            </View>
-        );
-    }
-}
+export const SearchBar = ({ changeStateForElasticSearchModal }) => (
+    <TouchableOpacity
+        style={searchbarContainerStyle}
+        onPress={changeStateForElasticSearchModal}
+    >
+        <Text style={textInputStyle} >
+            Search for the product...
+                </Text>
+    </TouchableOpacity>
+);
 
 SearchBar.propTypes = {
-
+    changeStateForElasticSearchModal: PropTypes.func
 };

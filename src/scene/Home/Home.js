@@ -14,6 +14,7 @@ import { SearchBar } from '../../component/SearchBar';
 import LoginWithPhoneComponent from '../../component/LoginWithPhone';
 import CategoriesListComponent from '../../component/CategoriesList';
 import { BackButton } from '../../component/BackButton';
+import ElasticSearchContainer from '../../scene/ElasticSearch/ElasticSearchContainer';
 
 import Color from '../../styles/Color';
 import styles from './styles';
@@ -49,8 +50,27 @@ export default class Home extends Component {
     }
 
     renderSearchBar = () => {
+        const { changeStateForElasticSearchModal } = this.props;
+
         return (
-            <SearchBar />
+            <SearchBar
+                changeStateForElasticSearchModal={changeStateForElasticSearchModal}
+            />
+        );
+    }
+
+    renderElasticSearchModalView = () => {
+        const { isElasticSearchModalVisible, changeStateForElasticSearchModal } = this.props;
+
+        return (
+            <Modal
+                visible={isElasticSearchModalVisible}
+                animationType="slide"
+            >
+                <ElasticSearchContainer
+                    changeStateForElasticSearchModal={changeStateForElasticSearchModal}
+                />
+            </Modal>
         );
     }
 
@@ -152,6 +172,7 @@ export default class Home extends Component {
                     />
                 </ParallaxScrollView>
                 {this.renderFloatingMenu()}
+                {this.renderElasticSearchModalView()}
             </View >
         );
     }
@@ -180,5 +201,9 @@ Home.propTypes = {
     changeOTPVerificationUIState: PropTypes.func,
     verifyOTP: PropTypes.func,
     onPressFloatingMenu: PropTypes.func,
-    isOTPVerified: PropTypes.bool
+    isOTPVerified: PropTypes.bool,
+
+    //SearhBar
+    changeStateForElasticSearchModal: PropTypes.func,
+    isElasticSearchModalVisible: PropTypes.bool
 };
