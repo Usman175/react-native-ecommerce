@@ -37,7 +37,7 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Image
                             style={{ height: 50, width: 50 }}
-                            source={{ uri: 'https://assets-cdn.github.com/images/modules/logos_page/Octocat.png' }}
+                            source={{ uri: item.image }}
                         />
                         <View style={{ flex: 1 }}>
                             <Text>
@@ -47,7 +47,7 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
                                 <Highlight attribute="type" hit={item} />
                             </Text>
                         </View>
-                        <Text>{item.stars}</Text>
+
                     </View>
                 );
             }}
@@ -131,9 +131,9 @@ export default class ElasticSearch extends Component {
     renderES = () => {
         return (
             <InstantSearch
-                appId="TLCDTR8BIO"
-                apiKey="686cce2f5dd3c38130b303e1c842c3e3"
-                indexName="repositories"
+                appId="latency"
+                apiKey="6be0576ff61c053d5f9a3225e2a90f76"
+                indexName="ikea"
             >
                 <SearchBox />
                 {this.renderSeperator()}
