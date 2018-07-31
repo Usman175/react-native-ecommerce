@@ -36,7 +36,7 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
                 return (
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Image
-                            style={{ height: 50, width: 50 }}
+                            style={{ height: 100, width: 100 }}
                             source={{ uri: item.image }}
                         />
                         <View style={{ flex: 1 }}>
