@@ -1,15 +1,103 @@
 import React, { Component } from 'react';
 import {
     View,
-    TextInput
+    TextInput,
+    FlatList,
+    Image,
+    Text
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Icon } from 'react-native-elements';
+import { InstantSearch } from "react-instantsearch/native";
+import {
+    connectSearchBox,
+    connectInfiniteHits,
+    connectHighlight
+} from "react-instantsearch/connectors";
 
 import styles from './styles';
 import Color from '../../styles/Color';
 
-class ElasticSearch extends Component {
+const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
+    /* if there are still results, you can
+    call the refine function to load more */
+    const onEndReached = function () {
+        if (hasMore) {
+            refine();
+        }
+    };
+
+    return (
+        <FlatList
+            data={hits}
+            onEndReached={onEndReached}
+            keyExtractor={(item, index) => item.objectID}
+            renderItem={({ item }) => {
+                return (
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Image
+                            style={{ height: 50, width: 50 }}
+                            source={{ uri: 'https://assets-cdn.github.com/images/modules/logos_page/Octocat.png' }}
+                        />
+                        <View style={{ flex: 1 }}>
+                            <Text>
+                                <Highlight attribute="name" hit={item} />
+                            </Text>
+                            <Text>
+                                <Highlight attribute="type" hit={item} />
+                            </Text>
+                        </View>
+                        <Text>{item.stars}</Text>
+                    </View>
+                );
+            }}
+        />
+    );
+});
+
+const Highlight = connectHighlight(
+    ({ highlight, attribute, hit, highlightProperty }) => {
+        const parsedHit = highlight({
+            attribute,
+            hit,
+            highlightProperty: '_highlightResult',
+        });
+        const highlightedHit = parsedHit.map((part, idx) => {
+            if (part.isHighlighted)
+                return (
+                    <Text key={idx} style={{ backgroundColor: '#ffff99' }}>
+                        {part.value}
+                    </Text>
+                );
+            return part.value;
+        });
+        return <Text>{highlightedHit}</Text>;
+    }
+);
+
+const SearchBox = connectSearchBox(({ refine, currentRefinement }) => {
+    return (
+        <TextInput
+            style={textInputStyle}
+            placeholderTextColor={Color.lightDark}
+            keyboardType="default"
+            placeholder="Try  &ldquo;iPhone 7&rdquo;"
+            autoFocus={true}
+            clearButtonMode="always"
+            multiline={false}
+            maxLength={50}
+            returnKeyType={'search'}
+            spellCheck={false}
+            autoCorrect={false}
+            autoCapitalize={'none'}
+            underlineColorAndroid="transparent"
+            value={currentRefinement}
+            onChangeText={(text) => refine(text)}
+        />
+    );
+});
+
+export default class ElasticSearch extends Component {
 
     renderCancelButton = () => {
         const { changeStateForElasticSearchModal } = this.props;
@@ -27,25 +115,6 @@ class ElasticSearch extends Component {
         );
     }
 
-    renderTextInput = () => {
-        return (
-            <TextInput
-                style={textInputStyle}
-                placeholderTextColor={Color.lightDark}
-                keyboardType="default"
-                placeholder="Try  &ldquo;iPhone 7&rdquo;"
-                autoFocus={true}
-                clearButtonMode="always"
-                multiline={false}
-                maxLength={50}
-                returnKeyType={'search'}
-                // onChangeText={(text) => onMinPriceInput(text.replace(/[^0-9]/g, ''))}
-                //value={minValue ? `₹ ${minValue}` : null}
-                underlineColorAndroid="transparent"
-            />
-        );
-    }
-
     renderSeperator = () => {
         return (
             <View style={{
@@ -59,13 +128,26 @@ class ElasticSearch extends Component {
         );
     }
 
+    renderES = () => {
+        return (
+            <InstantSearch
+                appId="TLCDTR8BIO"
+                apiKey="686cce2f5dd3c38130b303e1c842c3e3"
+                indexName="repositories"
+            >
+                <SearchBox />
+                {this.renderSeperator()}
+                <Hits />
+            </InstantSearch>
+        );
+    }
+
     render() {
         return (
             <View>
                 {this.renderCancelButton()}
-                {this.renderTextInput()}
-                {this.renderSeperator()}
-            </View>
+                {this.renderES()}
+            </View >
         );
     }
 }
@@ -78,4 +160,3 @@ ElasticSearch.propTypes = {
     changeStateForElasticSearchModal: PropTypes.func
 }
 
-export default ElasticSearch;
