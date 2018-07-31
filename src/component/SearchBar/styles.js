@@ -17,7 +17,7 @@ export default StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'stretch',
+        alignItems: 'center',
         position: 'absolute',
         paddingHorizontal: 25,
         ...Platform.select({
@@ -33,9 +33,8 @@ export default StyleSheet.create({
         })
     },
     textInputStyle: {
-        flex: 1,
         fontFamily: Fonts.CharterBT,
         fontSize: 16,
-        color: Color.lightWhite
+        color: Color.lightDark
     }
 });
