@@ -19,7 +19,7 @@ export const SearchBar = ({ changeStateForElasticSearchModal }) => (
         onPress={changeStateForElasticSearchModal}
     >
         <Text style={textInputStyle} >
-            Search for the product...
+            Search for a product
                 </Text>
     </TouchableOpacity>
 );

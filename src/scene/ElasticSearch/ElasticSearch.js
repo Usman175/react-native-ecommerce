@@ -81,7 +81,7 @@ const SearchBox = connectSearchBox(({ refine, currentRefinement }) => {
             style={textInputStyle}
             placeholderTextColor={Color.lightDark}
             keyboardType="default"
-            placeholder="Try  &ldquo;iPhone 7&rdquo;"
+            placeholder="Search for a product"
             autoFocus={true}
             clearButtonMode="always"
             multiline={false}
@@ -104,7 +104,7 @@ export default class ElasticSearch extends Component {
 
         return (
             <Icon
-                containerStyle={{ alignSelf: 'flex-start', padding: 10 }}
+                containerStyle={{ alignSelf: 'flex-start', paddingHorizontal: 20, paddingVertical: 10 }}
                 name="md-close"
                 type="ionicon"
                 size={35}
