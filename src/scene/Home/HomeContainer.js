@@ -19,7 +19,8 @@ export default class HomeContainer extends Component {
             isOTPVerified: undefined,
             //Users
             user: undefined,
-            userExistInDB: false
+            userExistInDB: false,
+            isElasticSearchModalVisible: false
         };
     }
 
@@ -160,13 +161,20 @@ export default class HomeContainer extends Component {
         this.setState({ phoneNumberInput: newText })
     }
 
+    changeStateForElasticSearchModal = () => {
+        this.setState({
+            isElasticSearchModalVisible: !this.state.isElasticSearchModalVisible
+        });
+    }
+
     render() {
         const {
             isLoginWithPhoneModalVisible,
             phoneNumberInput,
             phoneNumberInputUIVisible,
             otpVerificationUIVisible,
-            isOTPVerified
+            isOTPVerified,
+            isElasticSearchModalVisible
         } = this.state;
 
         return (
@@ -183,6 +191,8 @@ export default class HomeContainer extends Component {
                 verifyOTP={this.verifyOTP}
                 isOTPVerified={isOTPVerified}
                 onPressFloatingMenu={this.onPressFloatingMenu}
+                changeStateForElasticSearchModal={this.changeStateForElasticSearchModal}
+                isElasticSearchModalVisible={isElasticSearchModalVisible}
             />
         );
     }
