@@ -37,14 +37,14 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Image
                             style={{ height: 100, width: 100 }}
-                            source={{ uri: item.image }}
+                            source={{ uri: item.image_0 }}
                         />
                         <View style={{ flex: 1 }}>
                             <Text>
-                                <Highlight attribute="name" hit={item} />
+                                <Highlight attribute="productTitle" hit={item} />
                             </Text>
                             <Text>
-                                <Highlight attribute="type" hit={item} />
+                                {item.productPrice}
                             </Text>
                         </View>
 
@@ -131,9 +131,9 @@ export default class ElasticSearch extends Component {
     renderES = () => {
         return (
             <InstantSearch
-                appId="latency"
-                apiKey="6be0576ff61c053d5f9a3225e2a90f76"
-                indexName="ikea"
+                appId="HLRRWP8UOZ"
+                apiKey="026484143ef79d8e567d09bd0184a10a"
+                indexName="posts"
             >
                 <SearchBox />
                 {this.renderSeperator()}
