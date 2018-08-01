@@ -4,6 +4,7 @@ import {
     TextInput,
     FlatList,
     Image,
+    StyleSheet,
     Text
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -17,6 +18,13 @@ import {
 
 import styles from './styles';
 import Color from '../../styles/Color';
+import {
+    screenWidth
+} from '../../utilities/ScreenSize';
+import { numberWithCommas, getFormatedDate } from '../../utilities/Functions';
+
+const thumbnailHeight = screenWidth / 3;
+
 
 const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
     /* if there are still results, you can
@@ -32,20 +40,54 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
             data={hits}
             onEndReached={onEndReached}
             keyExtractor={(item, index) => item.objectID}
+            ItemSeparatorComponent={() => {
+                return (
+                    <View style={{
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'stretch',
+                        height: StyleSheet.hairlineWidth,
+                        backgroundColor: Color.placeholderWhite
+                    }}
+                    />
+                );
+            }}
+
             renderItem={({ item }) => {
                 return (
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Image
-                            style={{ height: 100, width: 100 }}
+                            style={{ height: thumbnailHeight, width: thumbnailHeight, backgroundColor: Color.lightDark }}
                             source={{ uri: item.image_0 }}
                         />
-                        <View style={{ flex: 1 }}>
-                            <Text>
+                        <View style={{ flex: 1, padding: 10, height: thumbnailHeight, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <Text
+                                style={productTitleTextStyle}
+                                numberOfLines={2}
+                                ellipsizeMode="tail"
+                            >
                                 <Highlight attribute="productTitle" hit={item} />
                             </Text>
-                            <Text>
-                                {item.productPrice}
-                            </Text>
+                            <Text style={priceTextStyle}>{'₹ ' + `${numberWithCommas(item.productPrice)}`}</Text>
+                            <View style={{ flexDirection: 'row', alignSelf: 'flex-start', justifyContent: 'center' }}>
+                                <Icon
+                                    name="ios-pin-outline"
+                                    type="ionicon"
+                                    size={18}
+                                    color={Color.lightDark}
+                                    underlayColor="transparent"
+                                />
+                                <Text style={addressTextStyle}>{item.selectedLocation}</Text>
+                                <Text style={addressTextStyle}>| </Text>
+                                <Icon
+                                    name="ios-time-outline"
+                                    type="ionicon"
+                                    size={18}
+                                    color={Color.lightDark}
+                                    underlayColor="transparent"
+                                />
+                                <Text style={addressTextStyle}>{getFormatedDate(item.updatedAt)}</Text>
+                            </View>
                         </View>
 
                     </View>
@@ -144,7 +186,7 @@ export default class ElasticSearch extends Component {
 
     render() {
         return (
-            <View>
+            <View >
                 {this.renderCancelButton()}
                 {this.renderES()}
             </View >
@@ -153,7 +195,10 @@ export default class ElasticSearch extends Component {
 }
 
 const {
-    textInputStyle
+    textInputStyle,
+    productTitleTextStyle,
+    addressTextStyle,
+    priceTextStyle
 } = styles;
 
 ElasticSearch.propTypes = {

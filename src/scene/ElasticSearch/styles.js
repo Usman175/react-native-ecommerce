@@ -12,5 +12,22 @@ export default styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'stretch',
         padding: 20
+    },
+    productTitleTextStyle: {
+        fontSize: 18,
+        color: Color.dark,
+        fontFamily: Fonts.CharterBT
+    },
+    addressTextStyle: {
+        color: Color.lightDark,
+        fontSize: 10,
+        fontFamily: Fonts.CharterBT,
+        paddingHorizontal: 5,
+        alignSelf: 'center'
+    },
+    priceTextStyle: {
+        color: Color.lightDark,
+        fontSize: 16,
+        fontFamily: Fonts.CharterBT
     }
 });
