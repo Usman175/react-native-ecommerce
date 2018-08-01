@@ -65,7 +65,7 @@ const Highlight = connectHighlight(
         const highlightedHit = parsedHit.map((part, idx) => {
             if (part.isHighlighted)
                 return (
-                    <Text key={idx} style={{ backgroundColor: '#ffff99' }}>
+                    <Text key={idx} style={{ backgroundColor: Color.golden }}>
                         {part.value}
                     </Text>
                 );
