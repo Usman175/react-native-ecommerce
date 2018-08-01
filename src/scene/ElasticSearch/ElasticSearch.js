@@ -22,7 +22,7 @@ import {
     deviceScaledWidth,
     screenWidth
 } from '../../utilities/ScreenSize';
-import { numberWithCommas } from '../../utilities/Functions';
+import { numberWithCommas ,getFormatedDate} from '../../utilities/Functions';
 
 const thumbnailHeight = screenWidth / 3;
 
@@ -97,7 +97,7 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
                                     color={Color.lightDark}
                                     underlayColor="transparent"
                                 />
-                                <Text style={addressTextStyle}>{'10 Days ago'}</Text>
+                                <Text style={addressTextStyle}>{getFormatedDate(item.updatedAt)}</Text>
                             </View>
                         </View>
 
