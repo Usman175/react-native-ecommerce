@@ -19,23 +19,12 @@ import {
 import styles from './styles';
 import Color from '../../styles/Color';
 import {
-    deviceScaledWidth,
     screenWidth
 } from '../../utilities/ScreenSize';
-import { numberWithCommas ,getFormatedDate} from '../../utilities/Functions';
+import { numberWithCommas, getFormatedDate } from '../../utilities/Functions';
 
 const thumbnailHeight = screenWidth / 3;
 
-const Separator = () => (
-    <View style={{
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        height: StyleSheet.hairlineWidth,
-        backgroundColor: Color.placeholderWhite
-    }}
-    />
-)
 
 const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => {
     /* if there are still results, you can
